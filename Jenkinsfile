@@ -33,4 +33,7 @@ node {
             app.push("latest")
         }
     }
+    stage('docker') {
+        docker.image('marouaniala/hellonode').run()
+    }
 }
