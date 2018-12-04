@@ -34,6 +34,6 @@ node {
         }
     }
     stage('docker') {
-        docker.image('marouaniala/hellonode').withRun('-P')
+        docker.image('marouaniala/hellonode').withRun('-P'){}
     }
 }
