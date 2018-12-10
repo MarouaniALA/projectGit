@@ -36,4 +36,11 @@ node {
     stage('docker') {
         docker.image('marouaniala/hellonode').withRun('-P'){}
     }
+ stage('Production') {
+      withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: '127.0.0.1']) {
+      
+       sh 'kubectl create cm nodejs-app --image marouaniala/hellonode  -o=yaml --dry-run > deploy/cm.yaml'
+
+sh 'kubectl apply -f deploy/ '
+      
 }
