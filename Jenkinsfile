@@ -44,3 +44,4 @@ node {
 sh 'kubectl apply -f deploy/ '
       
 }
+ }}
