@@ -11,9 +11,9 @@ node {
  stage('Production') {
       withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'localhost']) {
       
-       sh 'kubectl create cm nodejs-app --image marouaniala/hellonode  -o=yaml --dry-run > deploy/cm.yaml'
+       sh 'kubectl get po'
 
-sh 'kubectl apply -f deploy/ '
+
       
 }
  }}
