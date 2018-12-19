@@ -10,7 +10,7 @@ node {
     
  stage('Production') {
      kubernetesDeploy(
-  configs: '/home/marouani/.kube/config',
+  configs: '.kube/config',
   credentialsType: 'SSH',
   ssh: [
     sshCredentialsId: 'localhost-SSH',
