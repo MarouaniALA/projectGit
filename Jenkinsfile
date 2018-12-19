@@ -9,7 +9,7 @@ node {
 
     
  stage('Production') {
-      withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'localhost']) {
+      withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'https://192.168.99.100:8443']) {
       
        sh 'kubectl get po'
 
