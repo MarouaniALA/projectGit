@@ -9,11 +9,12 @@ node {
 
     
  stage('Production') {
-     try {
-    kubernetesDeploy  kubeConfig: [path: '/home/marouani/.kube/config']
-} catch (e) {
-    println e
-}
+     kubernetesDeploy(
+  credentialsType: 'SSH',
+  ssh: [
+    sshCredentialsId: 'localhost-SSH',
+    sshServer: 'localhost'
+ ])
       withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'https://192.168.99.100:8443', 
                      contextName: 'minikube', 
                       caCertificate: '/home/marouani/.minikube/ca.crt']) {
