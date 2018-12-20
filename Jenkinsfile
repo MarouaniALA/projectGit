@@ -16,9 +16,7 @@ node {
     sshCredentialsId: 'localhost-SSH',
     sshServer: 'localhost'
  ])
-      withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'https://192.168.99.100:8443', 
-                     contextName: 'minikube', 
-                      caCertificate: '/home/marouani/.minikube/ca.crt']) {
+      withKubeConfig([credentialsId: 'token', serverUrl: 'https://192.168.99.100:8443']) {
       
        sh 'kubectl get po'
 
