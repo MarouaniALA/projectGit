@@ -39,7 +39,7 @@ node {
       withKubeConfig([credentialsId: 'token', serverUrl: 'https://192.168.99.100:8443']) {
       
        
-          sh 'kubectl set image deployments/hellonode hellonode=marouaniala/hellonode'
+          sh 'kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:latest'
             
 
       
