@@ -40,8 +40,6 @@ node {
       
        
           sh 'kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:latest'
-            
-
-      
+                  
 }
  }}
