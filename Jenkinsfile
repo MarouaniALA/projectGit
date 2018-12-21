@@ -29,7 +29,7 @@ node {
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
-           // app.push("latest")
+            app.push("latest")
         }
     }
     
@@ -38,8 +38,10 @@ node {
      
       withKubeConfig([credentialsId: 'token', serverUrl: 'https://192.168.99.100:8443']) {
       
-       
-          sh 'kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER}'
+          sh 'if kubectl get deployment hellonode 2> /dev/null ; '
+        sh 'then kubectl create deployment --image=marouaniala/hellonode hellonode ;'
+          sh 'kubectl expose deployment hellonode --type=NodePort --port 8000;'
+          sh 'else kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:latest; fi'
                   
 }
  }}
