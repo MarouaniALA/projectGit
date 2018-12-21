@@ -38,8 +38,7 @@ node {
      
       withKubeConfig([credentialsId: 'token', serverUrl: 'https://192.168.99.100:8443']) {
       
-       sh 'kubectl create deployment --image=marouaniala/hellonode hellonode'
-          sh 'kubectl expose deployment  hellonode --type=NodePort --port 8000'
+       
           sh 'kubectl set image deployments/hellonode hellonode=marouaniala/hellonode'
             
 
