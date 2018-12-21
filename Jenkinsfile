@@ -39,8 +39,7 @@ node {
       withKubeConfig([credentialsId: 'token', serverUrl: 'https://192.168.99.100:8443']) {
       
           sh 'if kubectl get deployment hellonode 2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:latest; else  kubectl create deployment --image=marouaniala/hellonode hellonode ; fi'
-          sh 'if ! kubectl get service hellonode 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000; else echo ;fi
-'
+          sh 'if ! kubectl get service hellonode 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000; else echo ;fi'
           
 }
  }}
