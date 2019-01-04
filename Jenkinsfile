@@ -36,8 +36,9 @@ node {
     
  stage('Production') {
      
-      withKubeConfig([credentialsId: 'secret_k8s_openstack', serverUrl: 'https://172.16.255.56:6443']) {
+      withKubeConfig([credentialsId: 'secret_k8s_openstack', serverUrl: 'https://172.16.255.10']) {
       
+          sh "eval $(openstack coe cluster config kubernetesC2)"
           sh "if kubectl get deployment hellonode 2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER}; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode ; fi"
           sh "if ! kubectl get service hellonode 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000; else echo ;fi"
           
