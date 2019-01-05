@@ -42,7 +42,7 @@ node {
       
                     sh "kubectl version"
 
-          sh "if kubectl get deployment hellonode --namespace=development 2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER} --namespace=development; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode --namespace=development; fi"
-          sh "if ! kubectl get service hellonode --namespace=development 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000 --namespace=development ; else echo ;fi"
+          sh "if kubectl get deployment hellonode  2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER} ; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode --namespace=development; fi"
+          sh "if ! kubectl get service hellonode 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000  ; else echo ;fi"
 }
  }}
