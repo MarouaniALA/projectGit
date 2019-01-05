@@ -6,6 +6,8 @@ node {
 
         checkout scm
         sh "id"
+                  sh "kubectl version"
+
     }
  stage('Build image') {
         /* This builds the actual image; synonymous to
@@ -42,6 +44,6 @@ node {
           
           sh "if kubectl get deployment hellonode --namespace=development 2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER} --namespace=development; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode --namespace=development; fi"
           sh "if ! kubectl get service hellonode --namespace=development 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000 --namespace=development ; else echo ;fi"
-          
+          sh "kubectl version"
 }
  }}
