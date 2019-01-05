@@ -38,7 +38,7 @@ node {
     
  stage('Production') {
      
-      withKubeConfig([credentialsId: 'k8s_secret', serverUrl: 'https://172.16.255.56:6443']) {
+      withKubeConfig([credentialsId: 'k8s_secret', serverUrl: 'http://172.16.255.10:8001']) {
       
                     sh "kubectl version"
 
