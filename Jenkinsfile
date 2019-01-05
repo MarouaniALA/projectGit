@@ -6,8 +6,6 @@ node {
 
         checkout scm
         sh "id"
-        sh "sg docker -c bash "
-        sh "id"
     }
  stage('Build image') {
         /* This builds the actual image; synonymous to
