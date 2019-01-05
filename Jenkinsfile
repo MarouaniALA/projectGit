@@ -5,6 +5,7 @@ node {
         /* Let's make sure we have the repository cloned to our workspace */
 
         checkout scm
+        sh "id"
     }
  stage('Build image') {
         /* This builds the actual image; synonymous to
@@ -36,7 +37,7 @@ node {
     
  stage('Production') {
      
-      withKubeConfig([credentialsId: 'secret_k8s_openstack', serverUrl: 'https://172.16.255.56:6443']) {
+      withKubeConfig([credentialsId: 'k8s_secret', serverUrl: 'https://172.16.255.56:6443']) {
       
           
           sh "if kubectl get deployment hellonode 2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER}; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode ; fi"
