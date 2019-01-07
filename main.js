@@ -4,7 +4,7 @@ var http = require('http');
 // configure our HTTP server
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end(" \n\n\n\n\n\n\n                                                                continuous integration continuous deployment Example");
+  response.end(" \n\n\n\n\n\n\n                                                                continuous integration continuous deployment Example V2");
 });
 
 // listen on localhost:8000
