@@ -4,7 +4,7 @@ var http = require('http');
 // configure our HTTP server
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("<html><body><center> <h2>How Not to Center with HTML</h2> <p>This text may be centered...but you would be better off using CSS to center text or other elements on a web page.</p></center></body></html>");
+  response.end(" \n\n\n\nn\n\n\n                                          continuous integration continuous deployment Example");
 });
 
 // listen on localhost:8000
