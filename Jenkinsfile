@@ -42,7 +42,7 @@ node {
       
                 
           sh "if kubectl get deployment hellonode  2> /dev/null ;then kubectl set image deployments/hellonode hellonode=marouaniala/hellonode:${env.BUILD_NUMBER} ; else  kubectl create deployment --image=marouaniala/hellonode:${env.BUILD_NUMBER} hellonode; kubectl set resources deployment hellonode --requests=cpu=100m ; fi"
-          sh "if ! kubectl get horizontalpodautoscaler hellonode 2>/dev/null  ;then kubectl autoscale deployment hellonode --min=3 --max=10 --cpu-percent=20 ;fi"
+          sh "if ! kubectl get horizontalpodautoscaler hellonode 2>/dev/null  ;then kubectl autoscale deployment hellonode --min=3 --max=10 --cpu-percent=3 ;fi"
           sh "if ! kubectl get service hellonode 2>/dev/null  ;then kubectl expose deployment hellonode --type=NodePort --port 8000 ;fi"
           
 }
